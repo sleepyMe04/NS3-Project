@@ -1,0 +1,7 @@
+build/
+cmake-cache/
+*.csv
+*.png
+*.pcap
+*.tr
+*.xml
