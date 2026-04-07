@@ -1,0 +1,13 @@
+network,sweep,mode,avg_throughput_mbps,avg_delay_ms,avg_pdr_pct,avg_drop_ratio_pct,avg_energy_j
+lrwpan-mobile,nodes,standard,0.061384,761.297909,46.9963,53.0037,33.805614
+lrwpan-mobile,nodes,improved,0.062188,679.779735,47.7106,52.2894,33.806627
+lrwpan-mobile,nodes,elrto,0.064215,630.645943,48.7722,51.2278,33.807041
+lrwpan-mobile,flows,standard,0.058195,974.439168,38.63564,61.36436,56.363584
+lrwpan-mobile,flows,improved,0.053853,1013.676539,36.92766,63.07234,56.363517
+lrwpan-mobile,flows,elrto,0.055373,1013.163734,37.02164,62.97836,56.363323
+lrwpan-mobile,pps,standard,0.058384,1044.132365,38.44294,61.55706,56.362545
+lrwpan-mobile,pps,improved,0.055503,1036.301234,36.61786,63.38214,56.362202
+lrwpan-mobile,pps,elrto,0.055972,1045.301221,36.4397,63.5603,56.362152
+lrwpan-mobile,speed,standard,0.059309,802.522551,46.00878,53.99122,56.365145
+lrwpan-mobile,speed,improved,0.056352,803.25649,46.56198,53.43802,56.366063
+lrwpan-mobile,speed,elrto,0.056718,801.937935,46.82514,53.17486,56.366034
