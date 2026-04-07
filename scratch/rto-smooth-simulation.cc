@@ -24,7 +24,7 @@
 #include "ns3/internet-module.h"
 #include "ns3/network-module.h"
 #include "ns3/point-to-point-module.h"
-#include "rtt-estimator.h"
+#include "ns3/rtt-estimator.h"
 
 #include <algorithm>
 #include <fstream>
@@ -69,10 +69,8 @@ WireLogStreamOnNode(uint32_t nodeId, uint32_t flowId)
         // TcpSocketBase holds it as m_rtt (Ptr<RttEstimator>)
         // We access it through the object's TypeId attribute system
         // The attribute is named "RttEstimator" in ns-3.45
-        PointerValue pv;
-        sock->GetAttribute("RttEstimator", pv);
         Ptr<RttMeanDeviation> est =
-            DynamicCast<RttMeanDeviation>(pv.Get<RttEstimator>());
+            DynamicCast<RttMeanDeviation>(sock->GetRtt());
         if (!est)
         {
             NS_LOG_WARN("Could not cast to RttMeanDeviation on node "
