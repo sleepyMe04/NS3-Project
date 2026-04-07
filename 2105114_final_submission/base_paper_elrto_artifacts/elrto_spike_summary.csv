@@ -1,4 +1,4 @@
 mode,peak_rtt_ms,peak_rttvar_ms,peak_rto_ms,avg_gap_ms,avg_gamma_pct
-standard,107,17,142,13.034,19.073
-improved,107,13,127,11.759,17.41
-elrto,107,13,127,11.759,17.41
+standard,72,20,131,39.286,74.104
+improved,72,18,123,36.143,68.734
+elrto,72,18,126,35.229,66.937

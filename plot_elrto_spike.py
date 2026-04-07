@@ -19,6 +19,12 @@ COLORS = {
     "elrto": "#27ae60",
 }
 
+STYLES = {
+    "standard": {"linestyle": "-", "marker": "o", "label": "Standard"},
+    "improved": {"linestyle": "-.", "marker": "s", "label": "Improved"},
+    "elrto": {"linestyle": "--", "marker": "^", "label": "EL-RTO"},
+}
+
 
 def load_mode(mode: str) -> pd.DataFrame:
     path = FILES[mode]
@@ -36,7 +42,15 @@ def load_mode(mode: str) -> pd.DataFrame:
 def plot_metric(datasets, ycol, out, title, ylabel, spike_start=None, spike_end=None):
     plt.figure(figsize=(10, 5))
     for mode, df in datasets.items():
-        plt.plot(df["Time"], df[ycol], label=mode, color=COLORS[mode], linewidth=2)
+        plt.plot(df["Time"],
+                 df[ycol],
+                 label=STYLES[mode]["label"],
+                 color=COLORS[mode],
+                 linewidth=2,
+                 linestyle=STYLES[mode]["linestyle"],
+                 marker=STYLES[mode]["marker"],
+                 markersize=4,
+                 markevery=max(1, len(df) // 18))
     if spike_start is not None and spike_end is not None:
         plt.axvspan(spike_start, spike_end, color="#95a5a6", alpha=0.15, label="spike window")
     plt.xlabel("Time (s)")

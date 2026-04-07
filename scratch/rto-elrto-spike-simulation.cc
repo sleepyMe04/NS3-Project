@@ -42,26 +42,35 @@ WireLogStreamOnNode(uint32_t nodeId, uint32_t flowId)
         return;
     }
 
+   
     NS_LOG_WARN("No TCP socket found on node " << nodeId << " for logging");
 }
+
+
+//Topology
+
+
+// TCP Sender ---- Left Router ===== Right Router ---- TCP Receiver
+//                     |                  |
+// UDP Spike Sender ---/                  \--- UDP Spike Receiver
 
 int
 main(int argc, char* argv[])
 {
     std::string mode = "standard";
-    std::string accessRate = "10Mbps";
+    std::string accessRate = "20Mbps";
     std::string accessDelay = "2.5ms";
-    std::string bottleneckRate = "5Mbps";
+    std::string bottleneckRate = "3Mbps";
     std::string bottleneckDelay = "5ms";
     uint32_t packetSize = 1000;
-    uint32_t queueSize = 20;
+    uint32_t queueSize = 5;
     double simTime = 20.0;
     double tcpStart = 1.0;
     double udpSpikeStart = 10.0;
-    double udpSpikeDuration = 0.5;
-    std::string udpSpikeRate = "30Mbps";
+    double udpSpikeDuration = 1.2;
+    std::string udpSpikeRate = "60Mbps";
     uint32_t elRtoWindow = 4;
-    double elRtoTheta = 2.0;
+    double elRtoTheta = 1.2;
 
     CommandLine cmd(__FILE__);
     cmd.AddValue("mode", "standard|improved|elrto", mode);
@@ -108,6 +117,14 @@ main(int argc, char* argv[])
         Config::SetDefault("ns3::RttMeanDeviation::ElRtoWindow", UintegerValue(elRtoWindow));
         Config::SetDefault("ns3::RttMeanDeviation::ElRtoTheta", DoubleValue(elRtoTheta));
     }
+
+    NS_LOG_UNCOND("Spike defaults tuned for clearer EL-RTO separation:"
+                  << " accessRate=" << accessRate
+                  << ", bottleneckRate=" << bottleneckRate
+                  << ", queueSize=" << queueSize
+                  << ", udpSpikeRate=" << udpSpikeRate
+                  << ", udpSpikeDuration=" << udpSpikeDuration
+                  << ", elRtoTheta=" << elRtoTheta);
 
     std::string outName = mode + "_spike_data.csv";
     g_dataFile.open(outName);
